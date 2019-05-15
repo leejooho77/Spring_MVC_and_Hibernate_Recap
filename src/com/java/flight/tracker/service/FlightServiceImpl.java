@@ -21,19 +21,7 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	@Transactional
 	public List<Flight> getFlights() {
-		List<Flight> flights = flightDAO.getFlights();
-//		formatDateTime(flights);
-		return flights;
-	}
-
-	public void formatDateTime(List<Flight> flights) {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		for (Flight flight : flights) {
-			String unformattedDepartureTime = flight.getDepartureTime().toString();
-			String unformattedArrivalTime = flight.getArrivalTime().toString();
-			flight.setDepartureTime(LocalDateTime.parse(unformattedDepartureTime, format));
-			flight.setArrivalTime(LocalDateTime.parse(unformattedArrivalTime, format));
-		}
+		return flightDAO.getFlights();
 	}
 
 }
