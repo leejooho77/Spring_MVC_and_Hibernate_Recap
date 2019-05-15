@@ -4,10 +4,12 @@
 <html>
 	<head>
 		<title>Flight List</title>
+		<!-- reference our style sheet -->
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
 	</head>
 	<body>
 		<div id="wrapper">
-			<div id="header>
+			<div id="header">
 				<h2>Flight Schedule</h2>
 			</div>
 		</div>

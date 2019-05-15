@@ -1,6 +1,7 @@
 package com.java.flight.tracker.entity;
 
-import java.util.Date;
+
+import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,14 +40,13 @@ public class Flight {
 	@JoinColumn(name="arrival_id")
 	private Airport arrival;
 	@Column(name="departure_time")
-	private Date departureTime;
+	private LocalDateTime departureTime;
 	@Column(name="arrival_time")
-	private Date arrivalTime;
+	private LocalDateTime arrivalTime;
 	
 	public Flight() { }
 	
-	public Flight(String flightNumber, Airport departure, Airport arrival, Date departureTime, Date arrivalTime) {
-		super();
+	public Flight(String flightNumber, Airport departure, Airport arrival, LocalDateTime departureTime, LocalDateTime arrivalTime) {
 		this.flightNumber = flightNumber;
 		this.departure = departure;
 		this.arrival = arrival;
@@ -86,19 +86,19 @@ public class Flight {
 		this.arrival = arrival;
 	}
 	
-	public Date getDepartureTime() {
+	public LocalDateTime getDepartureTime() {
 		return departureTime;
 	}
 	
-	public void setDepartureTime(Date departureTime) {
+	public void setDepartureTime(LocalDateTime departureTime) {
 		this.departureTime = departureTime;
 	}
 	
-	public Date getArrivalTime() {
+	public LocalDateTime getArrivalTime() {
 		return arrivalTime;
 	}
 	
-	public void setArrivalTime(Date arrivalTime) {
+	public void setArrivalTime(LocalDateTime arrivalTime) {
 		this.arrivalTime = arrivalTime;
 	}
 

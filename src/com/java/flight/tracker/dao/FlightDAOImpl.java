@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.java.flight.tracker.entity.Flight;
 
@@ -18,7 +17,6 @@ public class FlightDAOImpl implements FlightDAO {
 	SessionFactory sessionFactory;
 	
 	@Override
-	@Transactional
 	public List<Flight> getFlights() {
 		// get current session
 		Session session = sessionFactory.getCurrentSession();
