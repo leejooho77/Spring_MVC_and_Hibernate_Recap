@@ -1,5 +1,3 @@
-#ignore self
-.gitignore
 #ignore generated sql files
 *.sql
 #ignore xml files
