@@ -1,8 +1,0 @@
-#ignore generated sql files
-.sql
-#ignore xml files
-.xml
-#ignore properties file
-.properties
-#ignore lib folder
-WebContent/WEB-INF/lib
