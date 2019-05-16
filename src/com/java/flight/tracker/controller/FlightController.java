@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.flight.tracker.entity.Airport;
 import com.java.flight.tracker.entity.Flight;
@@ -43,10 +44,32 @@ public class FlightController {
 		return "flight-form";
 	}
 	
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@RequestParam("flightId") int id, Model model) {
+		// get the flight from the database
+		Flight flight = flightService.getFlight(id);
+		// set flight as a model attribute to pre-populate form
+		model.addAttribute("flight", flight);
+		return "flight-form";
+	}
+	
 	@PostMapping("/saveFlight")
 	public String saveFlight(@ModelAttribute("flight") Flight flight) {
 		flightService.saveFlight(flight);
 		return "redirect:/flight/list ";
+	}
+	
+	@GetMapping("/deleteFlight")
+	public String deleteFlight(@RequestParam("flightId") int id) {
+		flightService.deleteFlight(id);
+		return "redirect:/flight/list";
+	}
+	
+	@GetMapping("/searchFlight")
+	public String searchFlight(@RequestParam("departureName") String departureName, Model model) {
+		List<Flight> flights = flightService.searchFlightByDeparture(departureName);
+		model.addAttribute("flights", flights);
+		return "list-flights";
 	}
 	
 	@ModelAttribute("airports")

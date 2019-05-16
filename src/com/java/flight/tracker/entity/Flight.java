@@ -23,7 +23,8 @@ public class Flight {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
-	@Column(name="flight_number")
+	// for unique key
+	@Column(name="flight_number", unique=true)
 	private String flightNumber;
 	@OneToOne(cascade={
 			CascadeType.DETACH,

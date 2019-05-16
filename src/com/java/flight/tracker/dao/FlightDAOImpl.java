@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,11 +20,33 @@ public class FlightDAOImpl implements FlightDAO {
 		// get current session
 		Session session = sessionFactory.getCurrentSession();
 		// create a query, sort by flight number
-		Query<Flight> query = session.createQuery("from Flight order by flightNumber", Flight.class);
-		// execute query and get result list
-		List<Flight> flights = query.list();
-		// return list
+		return session.createQuery("FROM Flight ORDER BY flightNumber", Flight.class)
+					  .list();
+	}
+	
+	@Override
+	public List<Flight> searchFlightByDeparture(List<Integer> airportsId) {
+		// get current hibernate session
+		Session session = sessionFactory.getCurrentSession();
+		List<Flight> flights = null;
+		// create a query and return it
+		if(airportsId == null || airportsId.size() == 0) {
+			flights = session.createQuery("FROM Flight f", Flight.class)
+							 .list();
+		} else {
+			flights = session.createQuery("FROM Flight f WHERE f.departure.id IN (:ids)", Flight.class)
+					  		 .setParameter("ids", airportsId)
+					  		 .list();
+		}
 		return flights;
+	}
+	
+	@Override
+	public Flight getFlight(int id) {
+		// get current session
+		Session session = sessionFactory.getCurrentSession();
+		// get flight info by id and return it
+		return session.get(Flight.class, id);
 	}
 
 	@Override
@@ -33,7 +54,17 @@ public class FlightDAOImpl implements FlightDAO {
 		// get current hibernate session
 		Session session = sessionFactory.getCurrentSession();
 		// save the flight
-		session.save(flight);
+		session.saveOrUpdate(flight);
+	}
+	
+	@Override
+	public void deleteFlight(int id) {
+		// get current hibernate session
+		Session session = sessionFactory.getCurrentSession();
+		// delete the flight by id
+		session.createQuery("DELETE FROM Flight f WHERE f.id=:flightId")
+			   .setParameter("flightId", id)
+			   .executeUpdate();
 	}
 	
 }

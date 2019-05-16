@@ -17,6 +17,8 @@
 		<div id="container">
 			<h3>Save Flight</h3>
 			<form:form action="saveFlight" modelAttribute="flight" method="POST">
+				<!-- need to associate this data with flight id -->
+				<form:hidden path="id" />
 				<table>
 					<tbody>
 						<tr>

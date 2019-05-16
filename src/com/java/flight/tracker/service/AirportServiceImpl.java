@@ -20,5 +20,11 @@ public class AirportServiceImpl implements AirportService {
 	public List<Airport> getAirports() {
 		return airportDAO.getAirports();
 	}
+	
+	@Override
+	@Transactional
+	public List<Integer> getIdByCountry(String name) {
+		return airportDAO.getIdByCountry(name);
+	}
 
 }

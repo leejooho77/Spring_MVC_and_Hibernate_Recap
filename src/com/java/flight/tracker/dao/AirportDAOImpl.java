@@ -21,8 +21,25 @@ public class AirportDAOImpl implements AirportDAO {
 		// get current hibernate session
 		Session session = sessionFactory.getCurrentSession();
 		// get list of airports
-		Query<Airport> query = session.createQuery("from Airport order by name", Airport.class);
+		Query<Airport> query = session.createQuery("FROM Airport ORDER BY name", Airport.class);
 		return query.list();
+	}
+	
+	@Override
+	public List<Integer> getIdByCountry(String name) {
+		// get current hibernate session
+		Session session = sessionFactory.getCurrentSession();
+		// get corresponding data and return
+		List<Integer> ids = null;
+		if(name != null && name.trim().length() > 0) {
+			ids = session.createQuery("SELECT a.id FROM Airport a WHERE lower(a.country) LIKE (:name)", Integer.class)
+					  	 .setParameter("name", "%" + name.toLowerCase() + "%")
+					  	 .list();
+		} else {
+			ids = session.createQuery("SELECT a.id FROM Airport a", Integer.class)
+						 .list();
+		}
+		return ids;
 	}
 
 }
