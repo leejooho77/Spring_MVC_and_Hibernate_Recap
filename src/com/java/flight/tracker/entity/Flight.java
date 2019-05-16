@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="flight")
 public class Flight {
@@ -39,8 +41,10 @@ public class Flight {
 	})
 	@JoinColumn(name="arrival_id")
 	private Airport arrival;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	@Column(name="departure_time")
 	private LocalDateTime departureTime;
+	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
 	@Column(name="arrival_time")
 	private LocalDateTime arrivalTime;
 	

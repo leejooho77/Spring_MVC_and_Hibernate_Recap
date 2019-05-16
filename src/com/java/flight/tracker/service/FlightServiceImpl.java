@@ -24,4 +24,10 @@ public class FlightServiceImpl implements FlightService {
 		return flightDAO.getFlights();
 	}
 
+	@Override
+	@Transactional
+	public void saveFlight(Flight flight) {
+		flightDAO.saveFlight(flight);
+	}
+
 }

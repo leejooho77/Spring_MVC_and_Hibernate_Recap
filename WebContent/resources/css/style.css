@@ -32,17 +32,16 @@ tr:nth-child(odd) { background: #BBBBBB; }
 #header { width: 90%; background: #09C332; margin: 0px auto; padding-top: 15px; padding-bottom: 15px; }
 #header h2 { width: 100%; margin: 0px 10px; color: #FFFFFF; }
 #container { width: 100%; margin: auto; }
-#container h3 { color: #000; }
-#container #content { margin-top: 20px; }
+#container h3 { color: #000; margin-left: 5%; }
+#container #content { margin-top: 20px; text-align: center; }
 
 .add-button {
 	border: 1px solid #666;
 	border-radius: 5px;
-	padding: 4px;
 	font-size: 12px;
 	font-weight: bold;
 	width: 120px;
 	padding: 5px 10px;
-	margin-bottom: 15px;
+	margin: 10px auto;
 	background: #CCCCCC;
 }

@@ -10,10 +10,11 @@
 	<body>
 		<div id="wrapper">
 			<div id="header">
-				<h2>Flight Schedule</h2>
+				<h2>Flight Schedule Management</h2>
 			</div>
 		</div>
 		<div id="container">
+			<h3>Flight Schedule</h3>
 			<div id="content">
 				<!-- add html table -->
 				<table>
@@ -35,6 +36,11 @@
 						</tr>
 					</c:forEach>
 				</table>
+				<!-- Add new button for adding new flight -->
+				<input type="button" value="Add Flight" 
+					onclick="window.location.href='showFormForAdd'; return false;"
+					class="add-button"
+				/>
 			</div>
 		</div>
 	</body>

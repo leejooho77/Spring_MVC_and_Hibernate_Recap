@@ -7,4 +7,5 @@ import com.java.flight.tracker.entity.Flight;
 public interface FlightService {
 
 	public List<Flight> getFlights();
+	public void saveFlight(Flight flight);
 }

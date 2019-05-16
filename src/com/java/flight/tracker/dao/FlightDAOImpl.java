@@ -20,12 +20,20 @@ public class FlightDAOImpl implements FlightDAO {
 	public List<Flight> getFlights() {
 		// get current session
 		Session session = sessionFactory.getCurrentSession();
-		// create a query
-		Query<Flight> query = session.createQuery("from Flight", Flight.class);
+		// create a query, sort by flight number
+		Query<Flight> query = session.createQuery("from Flight order by flightNumber", Flight.class);
 		// execute query and get result list
 		List<Flight> flights = query.list();
 		// return list
 		return flights;
+	}
+
+	@Override
+	public void saveFlight(Flight flight) {
+		// get current hibernate session
+		Session session = sessionFactory.getCurrentSession();
+		// save the flight
+		session.save(flight);
 	}
 	
 }
