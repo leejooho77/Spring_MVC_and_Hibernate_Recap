@@ -6,3 +6,5 @@
 *.properties
 #ignore lib folder
 WebContent/WEB-INF/lib
+#ignore build folder
+build/
